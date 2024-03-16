@@ -65,13 +65,13 @@ export default function ListaDeProdutos(): Produto[] {
     {
       nome: "Caneca Pokémon",
       descricao: "Caneca temática dos Pokémon.",
-      imgUrl: "https://via.placeholder.com/150",
+      imgUrl: "/item3.png",
       preco: 14.99,
     },
     {
       nome: "Miniatura DeLorean Back to the Future",
       descricao: "Miniatura do DeLorean da série De Volta para o Futuro.",
-      imgUrl: "https://via.placeholder.com/150",
+      imgUrl: "/item3.png",
       preco: 34.99,
     },
   ];
