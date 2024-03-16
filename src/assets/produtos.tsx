@@ -29,37 +29,37 @@ export default function ListaDeProdutos(): Produto[] {
     {
       nome: "Capa para Celular Homem de Ferro",
       descricao: "Capa para celular com tema do Homem de Ferro.",
-      imgUrl: "https://via.placeholder.com/150",
+      imgUrl: "/item4.png",
       preco: 12.99,
     },
     {
       nome: "Chaveiro Pac-Man",
       descricao: "Chaveiro colecionável do Pac-Man.",
-      imgUrl: "https://via.placeholder.com/150",
+      imgUrl: "/item5.png",
       preco: 6.99,
     },
     {
       nome: "Caneta Montblanc Star Trek",
       descricao: "Caneta esferográfica de luxo Star Trek.",
-      imgUrl: "https://via.placeholder.com/150",
+      imgUrl: "/item6.png",
       preco: 49.99,
     },
     {
       nome: "Pôster de Super Mario",
       descricao: "Pôster decorativo do Super Mario Bros.",
-      imgUrl: "https://via.placeholder.com/150",
+      imgUrl: "/item7.png",
       preco: 8.99,
     },
     {
       nome: "Mochila Harry Potter Hogwarts",
       descricao: "Mochila escolar com brasão de Hogwarts.",
-      imgUrl: "https://via.placeholder.com/150",
+      imgUrl: "/item8.png",
       preco: 39.99,
     },
     {
       nome: "Luminária Darth Vader",
       descricao: "Luminária em formato de capacete do Darth Vader.",
-      imgUrl: "https://via.placeholder.com/150",
+      imgUrl: "/item3.png",
       preco: 24.99,
     },
     {
