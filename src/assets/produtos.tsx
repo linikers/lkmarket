@@ -59,19 +59,19 @@ export default function ListaDeProdutos(): Produto[] {
     {
       nome: "Luminária Darth Vader",
       descricao: "Luminária em formato de capacete do Darth Vader.",
-      imgUrl: "/item3.png",
+      imgUrl: "/item9.png",
       preco: 24.99,
     },
     {
       nome: "Caneca Pokémon",
       descricao: "Caneca temática dos Pokémon.",
-      imgUrl: "/item3.png",
+      imgUrl: "/item10.png",
       preco: 14.99,
     },
     {
       nome: "Miniatura DeLorean Back to the Future",
       descricao: "Miniatura do DeLorean da série De Volta para o Futuro.",
-      imgUrl: "/item3.png",
+      imgUrl: "/item11.png",
       preco: 34.99,
     },
   ];
