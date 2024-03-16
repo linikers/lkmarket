@@ -1,2 +1,3 @@
 # lkmarket
-modelo de comercio
+
+modelo de comercio de itens nerds
