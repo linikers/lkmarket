@@ -20,10 +20,10 @@ export default function App() {
 
   return (
     <>
-      <Header />
+      <Header onSearch={handleSearch} />
       <Container>
         <Grid container spacing={3}>
-          {ListaDeProdutos().map((produto: Produto, index: number) => (
+          {filtrarProdutos.map((produto: Produto, index:number)) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <CardProduto
                 nome={produto.nome}
