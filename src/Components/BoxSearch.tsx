@@ -5,7 +5,13 @@ export default function SearchBox(): JSX.Element {
   return (
     <div>
       <div>
-        <IconButton>
+        <IconButton
+          sx={{
+            "&:hover, &:focus": {
+              backgroundColor: "transparent",
+            },
+          }}
+        >
           <SearchIcon />
         </IconButton>
         <InputBase

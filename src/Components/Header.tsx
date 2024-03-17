@@ -3,7 +3,7 @@ import SearchBox from "./BoxSearch";
 
 export default function Header(): JSX.Element {
   return (
-    <AppBar>
+    <AppBar sx={{ backgroundColor: "#6a1b9a" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box
           sx={{
