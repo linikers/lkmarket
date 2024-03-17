@@ -1,23 +1,15 @@
 import { IconButton, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import React, { useState } from "react";
-import ListaDeProdutos from "../assets/produtos";
-import { Produto } from "./CardProduct";
+import React from "react";
 
-export default function SearchBox(): JSX.Element {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-
-  const filtroProdutos = (term: string): Produto[] => {
-    return ListaDeProdutos.filter((produto: Produto) =>
-      produto.nome.toLowerCase().includes(term.toLowerCase())
-    );
-  };
-
+interface ISeachBox {
+  onSearch: (term: string) => void;
+}
+export default function SearchBox({ onSearch }: ISeachBox): JSX.Element {
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    const term = event.target.value;
+    onSearch(term);
   };
-
-  const produtoFiltrado = filtroProdutos(searchTerm);
 
   return (
     <div>
