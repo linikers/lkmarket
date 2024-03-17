@@ -14,7 +14,7 @@ export default function CardProduto({
   preco,
 }: Produto): JSX.Element {
   return (
-    <Card>
+    <Card sx={{ height: 450 }}>
       <CardMedia component="img" image={imgUrl} alt={nome} />
       <CardContent>
         <Typography variant="h6">{nome}</Typography>
