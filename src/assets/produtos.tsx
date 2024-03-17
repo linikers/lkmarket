@@ -1,5 +1,5 @@
 //import item1 from "../public/item1.jpeg";
-import { Produto } from "../Components/Product";
+import { Produto } from "../Components/CardProduct";
 
 export default function ListaDeProdutos(): Produto[] {
   const produtos: Produto[] = [
