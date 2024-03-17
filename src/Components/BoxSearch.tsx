@@ -8,7 +8,7 @@ export default function SearchBox(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   const filtroProdutos = (term: string): Produto[] => {
-    return ListaDeProdutos.filter((produto: Produto) =>
+    return ListaDeProdutos?.filter((produto: Produto) =>
       produto.nome.toLowerCase().includes(term.toLowerCase())
     );
   };
@@ -40,7 +40,7 @@ export default function SearchBox(): JSX.Element {
           onChange={handleSearch}
         />
       </div>
-      {filtroProdutos?.map((produto: Produto) => (
+      {produtoFiltrado?.map((produto: Produto) => (
         <div key={produto.nome}>
           <p>{produto.nome}</p>
           <p>{produto.descricao}</p>
