@@ -40,6 +40,13 @@ export default function SearchBox(): JSX.Element {
           onChange={handleSearch}
         />
       </div>
+      {filtroProdutos?.map((produto: Produto) => (
+        <div key={produto.nome}>
+          <p>{produto.nome}</p>
+          <p>{produto.descricao}</p>
+          <p>{produto.preco}</p>
+        </div>
+      ))}
     </div>
   );
 }
