@@ -30,7 +30,6 @@ export default function App() {
                 descricao={produto.descricao}
                 imgUrl={produto.imgUrl}
                 preco={produto.preco}
-                //sx={{ height: "300 px" }}
               />
             </Grid>
           ))}
