@@ -7,8 +7,10 @@ export default function SearchBox(): JSX.Element {
       <div>
         <IconButton
           sx={{
-            "&:hover, &:focus": {
+            color: "white",
+            "&:hover, &:focus, &.Mui-focusVisible": {
               backgroundColor: "transparent",
+              outline: "none",
             },
           }}
         >
@@ -17,6 +19,7 @@ export default function SearchBox(): JSX.Element {
         <InputBase
           placeholder="Buscar..."
           inputProps={{ "aria-label": "buscar" }}
+          sx={{ color: "white" }}
         />
       </div>
     </div>
