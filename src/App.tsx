@@ -4,6 +4,7 @@ import Header from "./Components/Header";
 import CardProduto, { Produto } from "./Components/CardProduct";
 import ListaDeProdutos from "./assets/produtos";
 import { useState } from "react";
+import BoxFooter from "./Components/Footer";
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -35,6 +36,7 @@ export default function App() {
           ))}
         </Grid>
       </Container>
+      <BoxFooter />
     </>
   );
 }
