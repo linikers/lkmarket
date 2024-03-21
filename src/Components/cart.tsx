@@ -22,13 +22,26 @@ const themeCart = createTheme({
       padding: "10px",
     },
   },
+  components: {
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          "& img": {
+            maxWidth: "80px",
+            maxHeight: "80px",
+            borderRadius: "5px",
+          },
+        },
+      },
+    },
+  },
 });
 
 export default function CartBox(): JSX.Element {
   const produtos = ListaDeProdutos();
   return (
     <ThemeProvider theme={themeCart}>
-      <Typography>Carrinho de compras</Typography>
+      <Typography variant="h5">Carrinho de compras</Typography>
       <List>
         {produtos.map((produto: Produto, index: number) => (
           <ListItem key={index}>
