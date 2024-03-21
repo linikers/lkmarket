@@ -23,7 +23,7 @@ export default function App() {
   return (
     <>
       <Header onSearch={handleSearch} />
-      <Container>
+      <Container sx={{ display: "flex", justifyContent: "flex-end" }}>
         <Grid container spacing={3}>
           {filtrarProdutos.map((produto: Produto) => (
             <Grid item xs={12} sm={6} md={4}>
@@ -36,7 +36,9 @@ export default function App() {
             </Grid>
           ))}
         </Grid>
-        <CartBox />
+        <Grid xs={12} sm={6} md={4}>
+          <CartBox />
+        </Grid>
       </Container>
       <BoxFooter />
     </>
