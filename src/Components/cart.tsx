@@ -1,4 +1,5 @@
 import {
+  IconButton,
   List,
   ListItem,
   ThemeProvider,
@@ -7,6 +8,10 @@ import {
 } from "@mui/material";
 import ListaDeProdutos from "../assets/produtos";
 import { Produto } from "./CardProduct";
+import {
+  AddCircleOutlineOutlined,
+  RemoveCircleOutline,
+} from "@mui/icons-material";
 
 export interface ICart {
   nome: string;
@@ -48,6 +53,43 @@ export default function CartBox(): JSX.Element {
             <div>
               <img src={produto.imgUrl} alt={produto.nome} />
             </div>
+            <Typography variant="body1">{produto.nome}</Typography>
+            <IconButton
+              disableFocusRipple
+              disableRipple
+              sx={{
+                color: "white",
+                border: "none",
+                "&:hover, &:focus, &.Mui-focusVisible": {
+                  backgroundColor: "transparent",
+                  outline: "none",
+                },
+              }}
+            >
+              <AddCircleOutlineOutlined />
+            </IconButton>
+            <IconButton
+              disableFocusRipple
+              disableRipple
+              sx={{
+                color: "white",
+                border: "none",
+                "&:hover, &:focus, &.Mui-focusVisible": {
+                  backgroundColor: "transparent",
+                  outline: "none",
+                },
+              }}
+            >
+              <RemoveCircleOutline
+                sx={{
+                  color: "white",
+                  "&:hover, &:focus, &.Mui-focusVisible": {
+                    backgroundColor: "transparent",
+                    outline: "none",
+                  },
+                }}
+              />
+            </IconButton>
           </ListItem>
         ))}
       </List>
