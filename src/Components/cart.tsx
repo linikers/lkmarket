@@ -1,4 +1,10 @@
-import { List, ListItem, Typography } from "@mui/material";
+import {
+  List,
+  ListItem,
+  ThemeProvider,
+  Typography,
+  createTheme,
+} from "@mui/material";
 import ListaDeProdutos from "../assets/produtos";
 import { Produto } from "./CardProduct";
 
@@ -8,10 +14,20 @@ export interface ICart {
   imagem: string;
 }
 
+const themeCart = createTheme({
+  typography: {
+    h5: {
+      backgroundColor: "6a1b9a",
+      color: "white",
+      padding: "10px",
+    },
+  },
+});
+
 export default function CartBox(): JSX.Element {
   const produtos = ListaDeProdutos();
   return (
-    <div>
+    <ThemeProvider theme={themeCart}>
       <Typography>Carrinho de compras</Typography>
       <List>
         {produtos.map((produto: Produto, index: number) => (
@@ -22,6 +38,6 @@ export default function CartBox(): JSX.Element {
           </ListItem>
         ))}
       </List>
-    </div>
+    </ThemeProvider>
   );
 }
