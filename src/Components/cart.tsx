@@ -6,7 +6,7 @@ import {
   Typography,
   createTheme,
 } from "@mui/material";
-import ListaDeProdutos from "../assets/produtos";
+
 import { Produto } from "./CardProduct";
 import {
   AddCircleOutlineOutlined,
@@ -17,6 +17,12 @@ export interface ICart {
   nome: string;
   quantidade: number;
   imagem: string;
+}
+
+interface ICartItens {
+  cartItens: Produto[];
+  onAddCart: (produto: Produto) => void;
+  onRemoverCart: (index: number) => void;
 }
 
 const themeCart = createTheme({
@@ -42,13 +48,16 @@ const themeCart = createTheme({
   },
 });
 
-export default function CartBox(): JSX.Element {
-  const produtos = ListaDeProdutos();
+export default function CartBox({
+  cartItens,
+  onAddCart,
+  onRemoverCart,
+}: ICartItens): JSX.Element {
   return (
     <ThemeProvider theme={themeCart}>
       <Typography variant="h5">Carrinho de compras</Typography>
       <List>
-        {produtos.map((produto: Produto, index: number) => (
+        {cartItens.map((produto: Produto, index: number) => (
           <ListItem key={index}>
             <div>
               <img src={produto.imgUrl} alt={produto.nome} />
@@ -57,6 +66,7 @@ export default function CartBox(): JSX.Element {
             <IconButton
               disableFocusRipple
               disableRipple
+              onClick={() => onAddCart(produto)}
               sx={{
                 color: "white",
                 border: "none",
@@ -71,6 +81,7 @@ export default function CartBox(): JSX.Element {
             <IconButton
               disableFocusRipple
               disableRipple
+              onClick={() => onRemoverCart(index)}
               sx={{
                 color: "white",
                 border: "none",

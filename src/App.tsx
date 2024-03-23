@@ -9,7 +9,7 @@ import CartBox from "./Components/cart";
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [carrinhoItems, setCarrinhoItems] = useState<Produto[]>(null);
+  const [carrinhoItems, setCarrinhoItems] = useState<Produto[]>();
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
