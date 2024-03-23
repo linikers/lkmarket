@@ -9,22 +9,20 @@ import CartBox from "./Components/cart";
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [carrinhoItems, setCarrinhoItems] = useState<Produto[]>();
-
-  const handleSearch = (term: string) => {
-    setSearchTerm(term);
-  };
+  const [carrinhoItems, setCarrinhoItems] = useState<Produto[]>([]);
 
   const handleAddCart = (produto: Produto) => {
     setCarrinhoItems((prevItens) => [...prevItens, produto]);
   };
 
-  const handleRemoveCart = (index: number) => {
-    setCarrinhoItems((prevItens) => {
-      const newItens = [...prevItens];
-      newItens.splice(index, 1);
-      return newItens;
-    });
+  const handleRemoveCart = (produto: Produto) => {
+    setCarrinhoItems((prevItens) =>
+      prevItens.filter((item) => item !== produto)
+    );
+  };
+
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
   };
 
   const filtrarProdutos = searchTerm
@@ -39,20 +37,23 @@ export default function App() {
       <Container sx={{ display: "flex", justifyContent: "flex-end" }}>
         <Grid container spacing={3}>
           {filtrarProdutos.map((produto: Produto) => (
-            <Grid item xs={12} sm={6} md={4}>
+            <Grid item xs={12} sm={6} md={4} key={produto.nome}>
               <CardProduto
                 nome={produto.nome}
                 descricao={produto.descricao}
                 imgUrl={produto.imgUrl}
                 preco={produto.preco}
                 onAddCart={() => handleAddCart(produto)}
-                onRemoverCart={() => handleRemoveCart(index)}
               />
             </Grid>
           ))}
         </Grid>
         <Grid xs={12} sm={6} md={4}>
-          <CartBox onAddCart={carrinhoItems} onRemoveCart={handleRemoveCart} />
+          <CartBox
+            cartItens={carrinhoItems}
+            onAddCart={handleAddCart}
+            onRemoverCart={handleRemoveCart}
+          />
         </Grid>
       </Container>
       <BoxFooter />

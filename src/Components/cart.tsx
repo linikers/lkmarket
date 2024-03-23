@@ -13,16 +13,10 @@ import {
   RemoveCircleOutline,
 } from "@mui/icons-material";
 
-export interface ICart {
-  nome: string;
-  quantidade: number;
-  imagem: string;
-}
-
 interface ICartItens {
   cartItens: Produto[];
   onAddCart: (produto: Produto) => void;
-  onRemoverCart: (index: number) => void;
+  onRemoverCart: (produto: Produto) => void;
 }
 
 const themeCart = createTheme({
@@ -81,7 +75,7 @@ export default function CartBox({
             <IconButton
               disableFocusRipple
               disableRipple
-              onClick={() => onRemoverCart(index)}
+              onClick={() => onRemoverCart(produto)}
               sx={{
                 color: "white",
                 border: "none",

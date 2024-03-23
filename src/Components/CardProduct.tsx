@@ -15,7 +15,6 @@ export interface Produto {
 
 interface ICardProduto extends Produto {
   onAddCart: () => void;
-  onRemoverCart: (index: number) => void;
 }
 
 export default function CardProduto({
@@ -24,7 +23,6 @@ export default function CardProduto({
   imgUrl,
   preco,
   onAddCart,
-  onRemoverCart,
 }: ICardProduto): JSX.Element {
   return (
     <Card sx={{ height: 450 }}>
@@ -34,7 +32,6 @@ export default function CardProduto({
         <Typography variant="body2"> {descricao}</Typography>
         <Typography variant="body2">R${preco}</Typography>
         <Button onClick={onAddCart}>Reservar</Button>
-        <Button onClick={() => onRemoverCart(index)}>Remover</Button>
       </CardContent>
     </Card>
   );
