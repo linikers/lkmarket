@@ -9,9 +9,22 @@ import CartBox from "./Components/cart";
 
 export default function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [carrinhoItems, setCarrinhoItems] = useState<Produto[]>(null);
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
+  };
+
+  const handleAddCart = (produto: Produto) => {
+    setCarrinhoItems((prevItens) => [...prevItens, produto]);
+  };
+
+  const handleRemoveCart = (index: number) => {
+    setCarrinhoItems((prevItens) => {
+      const newItens = [...prevItens];
+      newItens.splice(index, 1);
+      return newItens;
+    });
   };
 
   const filtrarProdutos = searchTerm
@@ -32,12 +45,14 @@ export default function App() {
                 descricao={produto.descricao}
                 imgUrl={produto.imgUrl}
                 preco={produto.preco}
+                onAddCart={() => handleAddCart(produto)}
+                onRemoverCart={() => handleRemoveCart(index)}
               />
             </Grid>
           ))}
         </Grid>
         <Grid xs={12} sm={6} md={4}>
-          <CartBox />
+          <CartBox onAddCart={carrinhoItems} onRemoveCart={handleRemoveCart} />
         </Grid>
       </Container>
       <BoxFooter />
