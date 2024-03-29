@@ -26,6 +26,12 @@ interface ICartItens {
   onAddCart: (produto: Produto) => void;
   onRemoverCart: (produto: Produto) => void;
 }
+interface IUser {
+  nome: string;
+  rua: string;
+  nRua: number;
+  bairro: string;
+}
 
 const themeCart = createTheme({
   typography: {
@@ -65,6 +71,17 @@ export default function CartBox({
     (total, produto) => total + produto.preco,
     0
   );
+
+  const comprar = ():<IUser> => {
+    const nome = (document.getElementById("nome") as HTMLInputElement).value;
+    const rua = (document.getElementById("rua") as HTMLInputElement).value;
+    const nRua = (document.getElementById("nRua") as HTMLInputElement).value;
+    const bairro = (document.getElementById("bairro") as HTMLInputElement).value;
+    const cep = (document.getElementById("cep") as HTMLInputElement).value;
+
+    setOpenDialog(false);
+  };
+
   return (
     <ThemeProvider theme={themeCart}>
       <Typography variant="h5">Carrinho de compras</Typography>
@@ -125,6 +142,7 @@ export default function CartBox({
           <form>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               <TextField
+                id="nome"
                 label="Nome"
                 variant="outlined"
                 sx={{ marginTop: "0.5rem" }}
@@ -168,7 +186,7 @@ export default function CartBox({
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleCloseDialog}>Comprar</Button>
+          <Button onClick={comprar}>Comprar</Button>
         </DialogActions>
       </Dialog>
     </ThemeProvider>
