@@ -29,8 +29,9 @@ interface ICartItens {
 interface IUser {
   nome: string;
   rua: string;
-  nRua: number;
+  nRua: string;
   bairro: string;
+  cep: string;
 }
 
 const themeCart = createTheme({
@@ -72,14 +73,16 @@ export default function CartBox({
     0
   );
 
-  const comprar = ():<IUser> => {
+  const comprar = (): IUser => {
     const nome = (document.getElementById("nome") as HTMLInputElement).value;
     const rua = (document.getElementById("rua") as HTMLInputElement).value;
     const nRua = (document.getElementById("nRua") as HTMLInputElement).value;
-    const bairro = (document.getElementById("bairro") as HTMLInputElement).value;
+    const bairro = (document.getElementById("bairro") as HTMLInputElement)
+      .value;
     const cep = (document.getElementById("cep") as HTMLInputElement).value;
 
     setOpenDialog(false);
+    return { nome, rua, nRua, bairro, cep };
   };
 
   return (
