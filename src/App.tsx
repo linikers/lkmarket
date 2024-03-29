@@ -16,9 +16,15 @@ export default function App() {
   };
 
   const handleRemoveCart = (produto: Produto) => {
-    setCarrinhoItems((prevItens) =>
-      prevItens.filter((item) => item !== produto)
-    );
+    setCarrinhoItems((prevItens) => {
+      const index = prevItens.findIndex((item) => item === produto);
+      if (index !== -1) {
+        const newItems = [...prevItens];
+        newItems.splice(index, 1);
+        return newItems;
+      }
+      return prevItens;
+    });
   };
 
   const handleSearch = (term: string) => {

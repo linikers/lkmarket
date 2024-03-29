@@ -1,5 +1,6 @@
-import { AppBar, Box, Toolbar } from "@mui/material";
+import { AppBar, Box, IconButton, Toolbar } from "@mui/material";
 import SearchBox from "./BoxSearch";
+import { ShoppingCartOutlined } from "@mui/icons-material";
 
 interface IHeader {
   onSearch: (term: string) => void;
@@ -20,7 +21,19 @@ export default function Header({ onSearch }: IHeader): JSX.Element {
         >
           <img src="/logo.png" alt="LK logo" style={{ width: "140px" }} />
         </Box>
+
         <Box sx={{ display: "flex", alignItems: "center" }}>
+          <IconButton
+            sx={{
+              color: "white",
+              "&:hover, &:focus, &.Mui-focusVisible": {
+                backgroundColor: "transparent",
+                outline: "none",
+              },
+            }}
+          >
+            <ShoppingCartOutlined />
+          </IconButton>
           <SearchBox onSearch={onSearch} />
         </Box>
       </Toolbar>

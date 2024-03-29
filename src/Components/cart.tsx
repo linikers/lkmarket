@@ -1,7 +1,14 @@
 import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   IconButton,
   List,
   ListItem,
+  TextField,
   ThemeProvider,
   Typography,
   createTheme,
@@ -12,6 +19,7 @@ import {
   AddCircleOutlineOutlined,
   RemoveCircleOutline,
 } from "@mui/icons-material";
+import { useState } from "react";
 
 interface ICartItens {
   cartItens: Produto[];
@@ -47,6 +55,16 @@ export default function CartBox({
   onAddCart,
   onRemoverCart,
 }: ICartItens): JSX.Element {
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const totalCompra = cartItens.reduce(
+    (total, produto) => total + produto.preco,
+    0
+  );
   return (
     <ThemeProvider theme={themeCart}>
       <Typography variant="h5">Carrinho de compras</Typography>
@@ -98,6 +116,61 @@ export default function CartBox({
           </ListItem>
         ))}
       </List>
+      <Typography>Total: R${totalCompra}</Typography>
+      <Button onClick={() => setOpenDialog(true)}>Finalizar</Button>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle> Finalizar Compra</DialogTitle>
+        <DialogContent>
+          <form>
+            <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              <TextField
+                label="Nome"
+                variant="outlined"
+                sx={{ marginTop: "0.5rem" }}
+              />
+              <TextField label="Rua" variant="outlined" />
+              <TextField label="Bairro" variant="outlined" />
+              <TextField label="Cep" variant="outlined" />
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "1rem",
+                margin: "3rem 1rem",
+              }}
+            >
+              <TextField
+                label="Nome no Cartão"
+                variant="outlined"
+                sx={{ width: "80%" }}
+              />
+              <TextField
+                label="Número do cartão"
+                variant="outlined"
+                sx={{ width: "60%" }}
+              />
+              <Box sx={{}}>
+                <TextField
+                  label="Data de validade"
+                  variant="outlined"
+                  sx={{ margin: "0.5rem" }}
+                />
+                <TextField
+                  label="Código CVV"
+                  variant="outlined"
+                  sx={{ margin: "0.5rem" }}
+                />
+              </Box>
+            </Box>
+          </form>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Comprar</Button>
+        </DialogActions>
+      </Dialog>
     </ThemeProvider>
   );
 }
