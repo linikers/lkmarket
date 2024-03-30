@@ -32,6 +32,11 @@ interface IUser {
   nRua: string;
   bairro: string;
   cep: string;
+
+  nomeCartao: string;
+  numeroCartao: string;
+  validadeCartao: string;
+  cvvCartao: string;
 }
 
 const themeCart = createTheme({
@@ -81,8 +86,30 @@ export default function CartBox({
       .value;
     const cep = (document.getElementById("cep") as HTMLInputElement).value;
 
+    const nomeCartao = (
+      document.getElementById("nomCartao") as HTMLInputElement
+    ).value;
+    const numeroCartao = (
+      document.getElementById("nomCartao") as HTMLInputElement
+    ).value;
+    const validadeCartao = (
+      document.getElementById("nomCartao") as HTMLInputElement
+    ).value;
+    const cvvCartao = (document.getElementById("nomCartao") as HTMLInputElement)
+      .value;
+
     setOpenDialog(false);
-    return { nome, rua, nRua, bairro, cep };
+    return {
+      nome,
+      rua,
+      nRua,
+      bairro,
+      cep,
+      nomeCartao,
+      numeroCartao,
+      validadeCartao,
+      cvvCartao,
+    };
   };
 
   return (
