@@ -169,8 +169,8 @@ export default function CartBox({
                 sx={{ marginTop: "0.5rem" }}
               />
               <TextField id="rua" label="Rua" variant="outlined" />
-              <TextField label="Bairro" variant="outlined" />
-              <TextField label="Cep" variant="outlined" />
+              <TextField id="bairro" label="Bairro" variant="outlined" />
+              <TextField id="cep" label="Cep" variant="outlined" />
             </Box>
 
             <Box
@@ -182,22 +182,26 @@ export default function CartBox({
               }}
             >
               <TextField
+                id="nomeCartao"
                 label="Nome no Cartão"
                 variant="outlined"
                 sx={{ width: "80%" }}
               />
               <TextField
+                id="numeroCartao"
                 label="Número do cartão"
                 variant="outlined"
                 sx={{ width: "60%" }}
               />
               <Box sx={{}}>
                 <TextField
+                  id="validadeCartao"
                   label="Data de validade"
                   variant="outlined"
                   sx={{ margin: "0.5rem" }}
                 />
                 <TextField
+                  id="cvvCartao"
                   label="Código CVV"
                   variant="outlined"
                   sx={{ margin: "0.5rem" }}
