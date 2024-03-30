@@ -20,23 +20,12 @@ import {
   RemoveCircleOutline,
 } from "@mui/icons-material";
 import { useState } from "react";
+import { IUser } from "./saveData";
 
 interface ICartItens {
   cartItens: Produto[];
   onAddCart: (produto: Produto) => void;
   onRemoverCart: (produto: Produto) => void;
-}
-interface IUser {
-  nome: string;
-  rua: string;
-  nRua: string;
-  bairro: string;
-  cep: string;
-
-  nomeCartao: string;
-  numeroCartao: string;
-  validadeCartao: string;
-  cvvCartao: string;
 }
 
 const themeCart = createTheme({
@@ -68,7 +57,8 @@ export default function CartBox({
   onRemoverCart,
 }: ICartItens): JSX.Element {
   const [openDialog, setOpenDialog] = useState(false);
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [userData, setUserData] = useState<IUser | null>(null);
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
@@ -78,7 +68,7 @@ export default function CartBox({
     0
   );
 
-  const comprar = (): IUser => {
+  const comprar = () => {
     const nome = (document.getElementById("nome") as HTMLInputElement).value;
     const rua = (document.getElementById("rua") as HTMLInputElement).value;
     const nRua = (document.getElementById("nRua") as HTMLInputElement).value;
@@ -87,19 +77,18 @@ export default function CartBox({
     const cep = (document.getElementById("cep") as HTMLInputElement).value;
 
     const nomeCartao = (
-      document.getElementById("nomCartao") as HTMLInputElement
+      document.getElementById("nomeCartao") as HTMLInputElement
     ).value;
     const numeroCartao = (
-      document.getElementById("nomCartao") as HTMLInputElement
+      document.getElementById("numeroCartao") as HTMLInputElement
     ).value;
     const validadeCartao = (
-      document.getElementById("nomCartao") as HTMLInputElement
+      document.getElementById("validadeCartao") as HTMLInputElement
     ).value;
-    const cvvCartao = (document.getElementById("nomCartao") as HTMLInputElement)
+    const cvvCartao = (document.getElementById("cvvCartao") as HTMLInputElement)
       .value;
 
-    setOpenDialog(false);
-    return {
+    const userData: IUser = {
       nome,
       rua,
       nRua,
@@ -110,6 +99,8 @@ export default function CartBox({
       validadeCartao,
       cvvCartao,
     };
+    setUserData(userData);
+    setOpenDialog(false);
   };
 
   return (
@@ -177,7 +168,7 @@ export default function CartBox({
                 variant="outlined"
                 sx={{ marginTop: "0.5rem" }}
               />
-              <TextField label="Rua" variant="outlined" />
+              <TextField id="rua" label="Rua" variant="outlined" />
               <TextField label="Bairro" variant="outlined" />
               <TextField label="Cep" variant="outlined" />
             </Box>
