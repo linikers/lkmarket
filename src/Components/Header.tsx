@@ -8,7 +8,7 @@ interface IHeader {
 
 export default function Header({ onSearch }: IHeader): JSX.Element {
   return (
-    <AppBar sx={{ backgroundColor: "#6a1b9a" }}>
+    <AppBar sx={{ backgroundColor: "#0468c3" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <Box
           sx={{

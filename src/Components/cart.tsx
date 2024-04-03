@@ -20,7 +20,7 @@ import {
   RemoveCircleOutline,
 } from "@mui/icons-material";
 import { useState } from "react";
-import { IUser } from "./saveData";
+import SaveDataFile, { IUser } from "./saveData";
 
 interface ICartItens {
   cartItens: Produto[];
@@ -58,7 +58,18 @@ export default function CartBox({
 }: ICartItens): JSX.Element {
   const [openDialog, setOpenDialog] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [userData, setUserData] = useState<IUser | null>(null);
+  const [userData, setUserData] = useState<IUser | null>({
+    nome: "",
+    rua: "",
+    nRua: "",
+    bairro: "",
+    cep: "",
+    nomeCartao: "",
+    numeroCartao: "",
+    validadeCartao: "",
+    cvvCartao: "",
+  });
+  //const [formFilled, setFormFilled] = useState(false);
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
@@ -67,41 +78,6 @@ export default function CartBox({
     (total, produto) => total + produto.preco,
     0
   );
-
-  const comprar = () => {
-    const nome = (document.getElementById("nome") as HTMLInputElement).value;
-    const rua = (document.getElementById("rua") as HTMLInputElement).value;
-    const nRua = (document.getElementById("nRua") as HTMLInputElement).value;
-    const bairro = (document.getElementById("bairro") as HTMLInputElement)
-      .value;
-    const cep = (document.getElementById("cep") as HTMLInputElement).value;
-
-    const nomeCartao = (
-      document.getElementById("nomeCartao") as HTMLInputElement
-    ).value;
-    const numeroCartao = (
-      document.getElementById("numeroCartao") as HTMLInputElement
-    ).value;
-    const validadeCartao = (
-      document.getElementById("validadeCartao") as HTMLInputElement
-    ).value;
-    const cvvCartao = (document.getElementById("cvvCartao") as HTMLInputElement)
-      .value;
-
-    const userData: IUser = {
-      nome,
-      rua,
-      nRua,
-      bairro,
-      cep,
-      nomeCartao,
-      numeroCartao,
-      validadeCartao,
-      cvvCartao,
-    };
-    setUserData(userData);
-    setOpenDialog(false);
-  };
 
   return (
     <ThemeProvider theme={themeCart}>
@@ -169,8 +145,8 @@ export default function CartBox({
                 sx={{ marginTop: "0.5rem" }}
               />
               <TextField id="rua" label="Rua" variant="outlined" />
-              <TextField label="Bairro" variant="outlined" />
-              <TextField label="Cep" variant="outlined" />
+              <TextField id="bairro" label="Bairro" variant="outlined" />
+              <TextField id="cep" label="Cep" variant="outlined" />
             </Box>
 
             <Box
@@ -182,22 +158,26 @@ export default function CartBox({
               }}
             >
               <TextField
+                id="nomeCartao"
                 label="Nome no Cartão"
                 variant="outlined"
                 sx={{ width: "80%" }}
               />
               <TextField
+                id="numeroCartao"
                 label="Número do cartão"
                 variant="outlined"
                 sx={{ width: "60%" }}
               />
               <Box sx={{}}>
                 <TextField
+                  id="validadeCartao"
                   label="Data de validade"
                   variant="outlined"
                   sx={{ margin: "0.5rem" }}
                 />
                 <TextField
+                  id="cvvCartao"
                   label="Código CVV"
                   variant="outlined"
                   sx={{ margin: "0.5rem" }}
@@ -207,7 +187,7 @@ export default function CartBox({
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={comprar}>Comprar</Button>
+          {userData && <SaveDataFile userData={userData} />}
         </DialogActions>
       </Dialog>
     </ThemeProvider>
