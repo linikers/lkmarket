@@ -18,7 +18,7 @@ export interface IUser {
 interface ISaveDataProps {
   userData: IUser;
 }
-const saveDataFile: React.FC<ISaveDataProps> = ({ userData }) => {
+const SaveDataFile: React.FC<ISaveDataProps> = ({ userData }) => {
   const saveUserData = async () => {
     try {
       await axios.post("http://localhost:3005/salvar-dados", userData);
@@ -30,8 +30,8 @@ const saveDataFile: React.FC<ISaveDataProps> = ({ userData }) => {
 
   return (
     <div>
-      <Button onClick={saveUserData}>Salvar Dados</Button>
+      <Button onClick={saveUserData}>Comprar</Button>
     </div>
   );
 };
-export default saveDataFile;
+export default SaveDataFile;
