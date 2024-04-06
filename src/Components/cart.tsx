@@ -58,17 +58,7 @@ export default function CartBox({
 }: ICartItens): JSX.Element {
   const [openDialog, setOpenDialog] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [userData, setUserData] = useState<IUser | null>({
-    nome: "",
-    rua: "",
-    nRua: "",
-    bairro: "",
-    cep: "",
-    nomeCartao: "",
-    numeroCartao: "",
-    validadeCartao: "",
-    cvvCartao: "",
-  });
+
   //const [formFilled, setFormFilled] = useState(false);
   const handleCloseDialog = () => {
     setOpenDialog(false);
@@ -78,6 +68,9 @@ export default function CartBox({
     (total, produto) => total + produto.preco,
     0
   );
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
 
   return (
     <ThemeProvider theme={themeCart}>
@@ -136,13 +129,19 @@ export default function CartBox({
       <Dialog open={openDialog} onClose={handleCloseDialog}>
         <DialogTitle> Finalizar Compra</DialogTitle>
         <DialogContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               <TextField
                 id="nome"
                 label="Nome"
                 variant="outlined"
                 sx={{ marginTop: "0.5rem" }}
+                onChange={(event) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    nome: event.target.value,
+                  }))
+                }
               />
               <TextField id="rua" label="Rua" variant="outlined" />
               <TextField id="bairro" label="Bairro" variant="outlined" />
@@ -184,11 +183,10 @@ export default function CartBox({
                 />
               </Box>
             </Box>
+            <Button type="submit">Comprar</Button>
           </form>
         </DialogContent>
-        <DialogActions>
-          {userData && <SaveDataFile userData={userData} />}
-        </DialogActions>
+        <DialogActions></DialogActions>
       </Dialog>
     </ThemeProvider>
   );
