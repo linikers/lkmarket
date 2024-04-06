@@ -57,8 +57,18 @@ export default function CartBox({
   onRemoverCart,
 }: ICartItens): JSX.Element {
   const [openDialog, setOpenDialog] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
+  const [userData, setUserData] = useState<IUser>({
+    nome: "",
+    rua: "",
+    nRua: "",
+    bairro: "",
+    cep: "",
+    nomeCartao: "",
+    numeroCartao: "",
+    validadeCartao: "",
+    cvvCartao: "",
+  });
   //const [formFilled, setFormFilled] = useState(false);
   const handleCloseDialog = () => {
     setOpenDialog(false);
@@ -70,6 +80,8 @@ export default function CartBox({
   );
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    <SaveDataFile userData={userData} />;
+    //SaveDataFile(userData);
   };
 
   return (
