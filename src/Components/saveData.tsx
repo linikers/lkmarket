@@ -2,8 +2,8 @@ import axios from "axios";
 
 export interface IUser {
   nome: string;
-  rua: string;
-  nRua: string;
+  endereco: string;
+  num: string;
   bairro: string;
   cep: string;
 

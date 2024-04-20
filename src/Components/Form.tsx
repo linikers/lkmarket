@@ -5,8 +5,8 @@ import saveUserData, { IUser } from "./saveData";
 export const FormDialog = () => {
   const [userData, setUserData] = useState<IUser>({
     nome: "",
-    rua: "",
-    nRua: "",
+    endereco: "",
+    num: "",
     bairro: "",
     cep: "",
     nomeCartao: "",
@@ -17,7 +17,7 @@ export const FormDialog = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // <SaveDataFile userData={userData} />;
+
     try {
       await saveUserData(userData);
     } catch (error) {
