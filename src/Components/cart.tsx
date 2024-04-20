@@ -69,7 +69,6 @@ export default function CartBox({
     validadeCartao: "",
     cvvCartao: "",
   });
-  //const [formFilled, setFormFilled] = useState(false);
   const handleCloseDialog = () => {
     setOpenDialog(false);
   };
