@@ -1,6 +1,30 @@
 import { Box, TextField } from "@mui/material";
+import { useState } from "react";
+import saveUserData, { IUser } from "./saveData";
 
 export const FormDialog = () => {
+  const [userData, setUserData] = useState<IUser>({
+    nome: "",
+    rua: "",
+    nRua: "",
+    bairro: "",
+    cep: "",
+    nomeCartao: "",
+    numeroCartao: "",
+    validadeCartao: "",
+    cvvCartao: "",
+  });
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // <SaveDataFile userData={userData} />;
+    try {
+      await saveUserData(userData);
+    } catch (error) {
+      console.error("Erro ao finalizar compra", error);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       <Box sx={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
