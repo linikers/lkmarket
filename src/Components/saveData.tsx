@@ -1,6 +1,4 @@
-import { Button } from "@mui/material";
 import axios from "axios";
-import React from "react";
 
 export interface IUser {
   nome: string;
@@ -15,23 +13,13 @@ export interface IUser {
   cvvCartao: string;
 }
 
-interface ISaveDataProps {
-  userData: IUser;
-}
-const SaveDataFile: React.FC<ISaveDataProps> = ({ userData }) => {
-  const saveUserData = async (userData: IUser) => {
-    try {
-      await axios.post("http://localhost:3005/salvar-dados", userData);
-      console.log("Dados salvos");
-    } catch (error) {
-      console.error("Erro ao salvar dados", error);
-    }
-  };
-
-  return (
-    <div>
-      <Button onClick={() => saveUserData(userData)}>Comprar</Button>
-    </div>
-  );
+const saveUserData = async (userData: IUser) => {
+  try {
+    await axios.post("http://localhost:3005/salvar-dados", userData);
+    console.log("Dados salvos");
+  } catch (error) {
+    console.error("Erro ao salvar dados", error);
+  }
 };
-export default SaveDataFile;
+
+export default saveUserData;

@@ -20,7 +20,7 @@ import {
   RemoveCircleOutline,
 } from "@mui/icons-material";
 import { useState } from "react";
-import SaveDataFile, { IUser } from "./saveData";
+import saveUserData, { IUser } from "./saveData";
 
 interface ICartItens {
   cartItens: Produto[];
@@ -74,30 +74,62 @@ export default function CartBox({
     setOpenDialog(false);
   };
 
+  const qtdPorItem: { [key: string]: number } = {};
+
+  cartItens.forEach((produto) => {
+    if (qtdPorItem[produto.nome]) {
+      qtdPorItem[produto.nome]++;
+    } else {
+      qtdPorItem[produto.nome] = 1;
+    }
+  });
+
   const totalCompra = cartItens.reduce(
     (total, produto) => total + produto.preco,
     0
   );
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    <SaveDataFile userData={userData} />;
-    //SaveDataFile(userData);
+    // <SaveDataFile userData={userData} />;
+    try {
+      await saveUserData(userData);
+    } catch (error) {
+      console.error("Erro ao finalizar compra", error);
+    }
   };
 
   return (
     <ThemeProvider theme={themeCart}>
       <Typography variant="h5">Carrinho de compras</Typography>
       <List>
-        {cartItens.map((produto: Produto, index: number) => (
-          <ListItem key={index}>
+        {Object.keys(qtdPorItem).map((nomeProduto) => (
+          <ListItem key={nomeProduto}>
             <div>
-              <img src={produto.imgUrl} alt={produto.nome} />
+              <img
+                src={
+                  cartItens.find((item) => item.nome === nomeProduto)?.imgUrl
+                }
+                alt={nomeProduto}
+              />
             </div>
-            <Typography variant="body1">{produto.nome}</Typography>
+            <Typography variant="body1">{nomeProduto}</Typography>
+            <Typography
+              variant="body1"
+              sx={{ margin: "8px", textAlign: "center" }}
+            >
+              Quantidade: {qtdPorItem[nomeProduto]}
+            </Typography>
             <IconButton
               disableFocusRipple
               disableRipple
-              onClick={() => onAddCart(produto)}
+              onClick={() => {
+                const itemEncontrado = cartItens.find(
+                  (item) => item.nome === nomeProduto
+                );
+                if (itemEncontrado) {
+                  onAddCart(itemEncontrado);
+                }
+              }}
               sx={{
                 color: "white",
                 border: "none",
@@ -112,7 +144,14 @@ export default function CartBox({
             <IconButton
               disableFocusRipple
               disableRipple
-              onClick={() => onRemoverCart(produto)}
+              onClick={() => {
+                const itemEncontrado = cartItens.find(
+                  (item) => item.nome === nomeProduto
+                );
+                if (itemEncontrado) {
+                  onRemoverCart(itemEncontrado);
+                }
+              }}
               sx={{
                 color: "white",
                 border: "none",
@@ -135,7 +174,7 @@ export default function CartBox({
           </ListItem>
         ))}
       </List>
-      <Typography>Total: R${totalCompra}</Typography>
+      <Typography>Total: R$ {Number(totalCompra).toFixed(2)}</Typography>
       <Button onClick={() => setOpenDialog(true)}>Finalizar</Button>
 
       <Dialog open={openDialog} onClose={handleCloseDialog}>
@@ -155,9 +194,39 @@ export default function CartBox({
                   }))
                 }
               />
-              <TextField id="rua" label="Rua" variant="outlined" />
-              <TextField id="bairro" label="Bairro" variant="outlined" />
-              <TextField id="cep" label="Cep" variant="outlined" />
+              <TextField
+                id="endereco"
+                label="Endereço"
+                variant="outlined"
+                onChange={(event) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    endereco: event.target.value,
+                  }))
+                }
+              />
+              <TextField
+                id="bairro"
+                label="Bairro"
+                variant="outlined"
+                onChange={(event) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    bairro: event.target.value,
+                  }))
+                }
+              />
+              <TextField
+                id="cep"
+                label="Cep"
+                variant="outlined"
+                onChange={(event) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    cep: event.target.value,
+                  }))
+                }
+              />
             </Box>
 
             <Box
@@ -173,12 +242,24 @@ export default function CartBox({
                 label="Nome no Cartão"
                 variant="outlined"
                 sx={{ width: "80%" }}
+                onChange={(event) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    nomeCartao: event.target.value,
+                  }))
+                }
               />
               <TextField
                 id="numeroCartao"
                 label="Número do cartão"
                 variant="outlined"
                 sx={{ width: "60%" }}
+                onChange={(event) =>
+                  setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    numeroCartao: event.target.value,
+                  }))
+                }
               />
               <Box sx={{}}>
                 <TextField
@@ -186,6 +267,12 @@ export default function CartBox({
                   label="Data de validade"
                   variant="outlined"
                   sx={{ margin: "0.5rem" }}
+                  onChange={(event) =>
+                    setUserData((prevUserData) => ({
+                      ...prevUserData,
+                      validadeCartao: event.target.value,
+                    }))
+                  }
                 />
                 <TextField
                   id="cvvCartao"

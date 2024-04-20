@@ -40,7 +40,9 @@ export default function App() {
   return (
     <>
       <Header onSearch={handleSearch} />
-      <Container sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <Container
+        sx={{ display: "flex", justifyContent: "flex-end", marginTop: "60px" }}
+      >
         <Grid container spacing={3}>
           {filtrarProdutos.map((produto: Produto) => (
             <Grid item xs={12} sm={6} md={4} key={produto.nome}>
