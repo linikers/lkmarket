@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Dialog,
   DialogActions,
@@ -8,7 +7,6 @@ import {
   IconButton,
   List,
   ListItem,
-  TextField,
   ThemeProvider,
   Typography,
   createTheme,
@@ -20,7 +18,6 @@ import {
   RemoveCircleOutline,
 } from "@mui/icons-material";
 import { useState } from "react";
-import saveUserData, { IUser } from "./saveData";
 import { FormDialog } from "./Form";
 
 interface ICartItens {
