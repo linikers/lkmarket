@@ -21,6 +21,7 @@ import {
 } from "@mui/icons-material";
 import { useState } from "react";
 import saveUserData, { IUser } from "./saveData";
+import { FormDialog } from "./Form";
 
 interface ICartItens {
   cartItens: Produto[];
@@ -158,7 +159,9 @@ export default function CartBox({
 
       <Dialog open={openDialog} onClose={handleCloseDialog}>
         <DialogTitle> Finalizar Compra</DialogTitle>
-        <DialogContent></DialogContent>
+        <DialogContent>
+          <FormDialog />
+        </DialogContent>
         <DialogActions></DialogActions>
       </Dialog>
     </ThemeProvider>
