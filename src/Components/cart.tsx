@@ -279,6 +279,12 @@ export default function CartBox({
                   label="Código CVV"
                   variant="outlined"
                   sx={{ margin: "0.5rem" }}
+                  onChange={(event) =>
+                    setUserData((prevUserData) => ({
+                      ...prevUserData,
+                      cvvCartao: event.target.value,
+                    }))
+                  }
                 />
               </Box>
             </Box>
