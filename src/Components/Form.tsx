@@ -55,6 +55,7 @@ export const FormDialog = () => {
           id="bairro"
           label="Bairro"
           variant="outlined"
+          value={userData.nome}
           onChange={(event) =>
             setUserData((prevUserData) => ({
               ...prevUserData,
